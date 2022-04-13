@@ -1,0 +1,26 @@
+[ ] Few Past problems - 								https://www.commonlounge.com/discussion/04a801a019014e778afd7c0fa3d9155d/all
+[ ] Replay of IOITC 1 - 								https://www.codechef.com/IOITC181
+[ ] Replay of IOITC 2 - 								https://www.codechef.com/IOITC182
+[ ] Euler tour technique (LCA, RMQ, Sparse tables) -				https://usaco.guide/gold/tree-euler?lang=cpp
+[ ] DP
+	[ ] DP on trees - 								https://usaco.guide/gold/dp-trees?lang=cpp
+	[ ] Bitmask DP - 									https://usaco.guide/gold/dp-bitmasks?lang=cpp
+ 	[ ] LIS - 										https://usaco.guide/gold/lis?lang=cpp
+												https://training.ufds.cc/stages/1-Junior/7-More-Classic-DP-Problems/3-LIS-nlogn
+	[ ] Tiling - 									https://training.ufds.cc/stages/1-Junior/7-More-Classic-DP-Problems/4-Tiling
+	[ ] Prefix Sums Optimization -						https://training.ufds.cc/stages/1-Junior/7-More-Classic-DP-Problems/5-Prefix-Sums-Optimization
+	[ ] UDFS -										https://training.ufds.cc/stages/1-Junior/5-Classic-DP-Problems
+[ ] Greedy - 										https://training.ufds.cc/stages/1-Junior/2-Greedy/3-Common-Techniques
+												https://usaco.guide/bronze/intro-greedy?lang=cpp
+												https://usaco.guide/silver/greedy-sorting?lang=cpp
+												https://usaco.guide/bronze/ad-hoc?lang=cpp
+[ ] DFS - 											https://usaco.guide/silver/dfs?lang=cpp
+[ ] Flood Fill - 										https://usaco.guide/silver/flood-fill?lang=cpp
+[ ] Binary Jumping - 									https://usaco.guide/plat/binary-jump?lang=cpp
+[ ] Range update Range query (Lazy Segment trees) - 				https://usaco.guide/plat/RURQ?lang=cpp
+[ ] Divide and conquer - 								https://usaco.guide/plat/DC-SRQ?lang=cpp
+[ ] Heavy Light Decomposition - 							https://usaco.guide/plat/hld?lang=cpp
+[ ] Small to large Merging - 								https://usaco.guide/plat/merging?lang=cpp
+[ ] Centroid Decomposition - 								https://usaco.guide/plat/centroid?lang=cpp
+[ ] Binary Search - 									https://training.ufds.cc/stages/1-Junior/3-Binary-Search
+												https://usaco.guide/silver/binary-search?lang=cpp

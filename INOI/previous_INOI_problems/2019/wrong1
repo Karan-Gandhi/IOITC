@@ -1,0 +1,113 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define pl(a) " [" << #a << ": " << (a) << "] "
+#define all(v) v.begin(), v.end()
+#define endl '\n'
+#define ll long long
+
+struct DSU {
+	vector<int> p;
+	vector<int> s;
+	int largest = 1;
+
+	void init(int n) {
+		p = vector<int>(n);
+		s = vector<int>(n, 1);
+		iota(all(p), 0);
+	}
+
+	int get(int x) {
+		return p[x] = (p[x] == x ? x : get(p[x]));
+	}
+
+	void unite(int a, int b) {
+		a = get(a);
+		b = get(b);
+		if (a == b) return;
+		if (s[a] > s[b]) swap(a, b);
+		p[a] = b;
+		s[b] += s[a];
+		largest = max(largest, s[b]);
+	}
+
+	bool same_set(int a, int b) {
+		return get(a) == get(b);
+	}
+
+	int size(int a) {
+		return s[get(a)];
+	}
+};
+
+void solve() {
+	int n, l; cin >> n >> l;
+	vector<pair<int, int>> arr(n); for (int i = 0; i < n; i++) {
+		int a; cin >> a;
+		arr[i] = make_pair(a, i);
+	}
+
+	if (l > n) {
+		cout << 0 << endl;
+		return;
+	}
+
+	sort(all(arr)); // pick L numbers such that min(a[i + 1] - a[i]) is max
+	reverse(all(arr)); // what if I compute all the n(n - 1) costs and the choose the max one
+	// build a mst of size at least l?
+	// vector<pair<int, pair<int, int>>> edges;
+
+	// for (int i = 0; i < n; i++) {
+	// 	for (int j = i + 1; j < n; j++) {
+	// 		edges.emplace_back(abs(arr[i].second - arr[j].second), make_pair(arr[i].second, arr[j].second));
+	// 	}
+	// }
+
+	// sort(all(edges));
+	// reverse(all(edges));
+
+	// for (auto a : edges) {
+	// 	cout << pl(a.first) << pl(a.second.first) << pl(a.second.second) << endl;
+	// }
+
+	// dp[i][j] = max of the min cost of intresting subsequence of size j till the ith index and the ith element is surely a part of it
+	// dp[i][j] = max of dp[i - k][j - 1] + cost(i-k th element, ith element)
+
+	// int ans = edges[0].first;
+	// DSU dsu;
+	// dsu.init(n);
+	// dsu.unite(edges[0].second.first, edges[0].second.second);
+
+	// for (int i = 0; i < edges.size(); i++) {
+	// 	if (dsu.largest >= l) {
+	// 		break;
+	// 	}
+	// 	// add this edge
+	// 	dsu.unite(edges[i].second.first, edges[i].second.second);
+	// 	ans = min(ans, edges[i].first);
+	// }
+
+	// cout << pl(dsu.largest) << endl;
+
+	// // for ()
+
+	// for (int i = 0; i < n; i++) cout << dsu.get(i) << ' ';
+	// cout << endl;
+	// for (int i = 0; i < n; i++) cout << dsu.size(i) << ' ';
+	// cout << endl;
+
+	// cout << ans << endl;
+}
+
+int main() {
+	cin.tie(nullptr);
+	ios::sync_with_stdio(false);
+
+	// solve();
+	int t; cin >> t;
+	while (t--) {
+		solve();
+	}
+
+	return 0;
+}
