@@ -6,123 +6,22 @@ using namespace std;
 #define pl(var) " [" << #var << ": " << (var) << "] "
 #define ll long long
 
-ll int inf = 1e16;
-
-struct DSU { // Sorry UFDS
-	vector<int> p, s;
-	int components;
-
-	void init(int n) {
-		p = vector<int>(n);
-		iota(all(p), 0);
-		s = vector<int>(n, 1);
-		components = n;
-	}
-
-	int get(int x) {
-		return p[x] = (p[x] == x ? x : get(p[x]));
-	}
-
-	void unite(int a, int b) {
-		a = get(a);
-		b = get(b);
-
-		if (a == b) return;
-
-		if (s[a] > s[b]) swap(a, b);
-
-		p[a] = b;
-		s[b] += s[a];
-		components--;
-	}
-
-	bool same_set(int a, int b) {
-		return get(a) == get(b);
-	}
-};
-
 void solve() {
-	int n, m; cin >> n >> m;
-	int k; cin >> k;
-	vector<tuple<ll int, int,int>> edges(m);
-	vector<ll int> final_edges;
-	
-	vector<int> leafs(k);
-	vector<bool> is_leaf(n, 0);
-	for (int i = 0; i < k; i++) {
-		cin >> leafs[i];
-		leafs[i]--;
-		is_leaf[leafs[i]] = 1;
-	}
+	// get the longest sequence satisfying this
 
-	for (int i = 0; i < m; i++) {
-		int a, b; cin >> a >> b;
-		a--, b--;
-		ll int w; cin >> w;
+	int n, h; cin >> n >> h;
 
-		edges[i] = make_tuple(w, a, b);
-	}
-
-	sort(all(edges));
-
-	// all the leaf should have a degree of 1
-	vector<int> degree(n, 0);
-	DSU dsu;
-	dsu.init(n);
-	int ptr = 0;
-
-	while (dsu.components > 1 && ptr < (int)edges.size()) {
-		tuple<ll int, int, int> edge = edges[ptr++];
-		if (dsu.same_set(get<1>(edge), get<2>(edge))) continue;
-
-		int a = get<1>(edge);
-		int b = get<2>(edge);
-		bool add_edge = 1;
-
-		if (is_leaf[a]) {
-			if (degree[a] >= 1) add_edge = 0; 
-		}
-
-		if (is_leaf[b]) {
-			if (degree[b] >= 1) add_edge = 0;
-		}
-
-		if (is_leaf[a] && is_leaf[b]) continue;
-
-		if (add_edge) {
-			dsu.unite(a, b);
-			degree[a]++;
-			degree[b]++;
-			final_edges.push_back(get<0>(edge));
-		}
-	}
-
-	if (n == 2) {
-		// choose the edge with the min weight
-		ll int ans = inf;
-		for (auto i : edges) {
-			ans = min(ans, get<0>(i));
-		}
-		cout << ans << endl;
-		return;
-	}
-
-	assert(int(final_edges.size()) == n - 1);
-	ll int ans = 0;
-	for (ll int i : final_edges) {
-		ans += i;
-	}
-	cout << ans << endl;
+	vector<int> arr(n); for (int i = 0; i < n; i++) cin >> arr[i];
 }
 
 int main() {
-	// freopen("cbarn2.in", "r", stdin);
-	// freopen("cbarn2.out", "w", stdout);
+	// freopen(".in", "r", stdin);
+	// freopen(".out", "w", stdout);
 
-	// ios::sync_with_stdio(false);
-	// cin.tie(nullptr);
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
 
-	ll int T = 1;
+	int T = 1;
 	// cin >> T;
 	while (T--)
 		solve();
