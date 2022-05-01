@@ -7,11 +7,7 @@ using namespace std;
 #define ll long long
 
 void solve() {
-	// get the longest sequence satisfying this
 
-	int n, h; cin >> n >> h;
-
-	vector<int> arr(n); for (int i = 0; i < n; i++) cin >> arr[i];
 }
 
 int main() {
