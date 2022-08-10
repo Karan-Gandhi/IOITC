@@ -1,3 +1,7 @@
+g++ ans.cpp -o ans
+g++ brut.cpp -o brut
+g++ gen.cpp -o gen
+
 for((i = 1; ; ++i)); do # if they are same then will loop forever
     echo $i
     ./gen $i > int

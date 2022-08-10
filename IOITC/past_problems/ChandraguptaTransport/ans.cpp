@@ -183,7 +183,6 @@ void solve() {
 		adj[b].push_back(a);
 	}
 
-	// first create the euler tour
 	tour_dfs(0, 0);
 	tree.init(ti + 1);
 

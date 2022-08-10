@@ -1,43 +1,62 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-vector<int> graph[200001];
-int dp[2][200001];
-
-void dfs(int node = 1, int parent = 0) {
-	int mx1 = 1, mx2 = 1;
-	for (int i : graph[node]) if (i != parent) {
-		dfs(i, node);
-		if (dp[0][i] >= mx1) {
-			mx2 = mx1;
-			mx1 = dp[0][i];
-		} else mx2 = max(mx2, dp[0][i]);
-	}
-	dp[0][node] = mx1 + graph[node].size() - 2;
-	dp[1][node] = mx1 + mx2 + graph[node].size() - 3;
+ 
+// Function to return required minimum sum
+int sumSubarrayMins(int A[], int n)
+{
+    int left[n], right[n];
+ 
+    stack<pair<int, int> > s1, s2;
+ 
+    // getting number of element strictly larger
+    // than A[i] on Left.
+    for (int i = 0; i < n; ++i) {
+        int cnt = 1;
+ 
+        // get elements from stack until element
+        // greater than A[i] found
+        while (!s1.empty() && (s1.top().first) > A[i]) {
+            cnt += s1.top().second;
+            s1.pop();
+        }
+ 
+        s1.push({ A[i], cnt });
+        left[i] = cnt;
+    }
+ 
+    // getting number of element larger than A[i] on Right.
+    for (int i = n - 1; i >= 0; --i) {
+        int cnt = 1;
+ 
+        // get elements from stack until element greater
+        // or equal to A[i] found
+        while (!s2.empty() && (s2.top().first) >= A[i]) {
+            cnt += s2.top().second;
+            s2.pop();
+        }
+ 
+        s2.push({ A[i], cnt });
+        right[i] = cnt;
+    }
+ 
+    int result = 0;
+ 
+    // calculating required resultult
+    for (int i = 0; i < n; ++i)
+        result = (result + A[i] * left[i] * right[i]);
+ 
+    return result;
 }
-
-int main() {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	int n;
-	cin >> n;
-	for (int i = 1; i < n; i++) {
-		int a, b;
-		cin >> a >> b;
-		graph[a].push_back(b);
-		graph[b].push_back(a);
-	}
-
-	int leaves = 0;
-	for (int i = 1; i <= n; i++) if (graph[i].size() == 1) leaves++;
-
-	dfs();
-	int ans = 0;
-	for (int i = 1; i <= n; i++) {
-		if (graph[i].size() > 1) ans = max(ans, max(dp[1][i], dp[0][i]) + 1);
-	}
-	// Check if the graph is a star to minus 1
-	cout << ans - (leaves == n - 1) << endl;
-	return 0;
+ 
+// Driver program
+int main()
+{
+    int A[] = { 1, 3, 2, 4 };
+ 
+    int n = sizeof(A) / sizeof(A[0]);
+ 
+    // function call to get required resultult
+    cout << sumSubarrayMins(A, n);
+ 
+    return 0;
 }
